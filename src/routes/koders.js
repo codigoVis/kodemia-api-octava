@@ -46,5 +46,25 @@ router.post('/', async (request,response) => {
     })
     }
 })
+router.delete('/:id',async(request, response) => {
+    try{
+        const idKoderData = request.params.id
+
+        const deleteKoder = await koders.findByIdAndDelete(idKoderData)
+        
+        response.json({
+            success : true,
+            data: {
+                deleteKoder
+            }
+        })
+    }catch(error){
+        response.status(400)
+        response.json({
+            success: false,
+            error: error.message      
+    })
+    }
+})
 
 module.exports = router

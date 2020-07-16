@@ -12,7 +12,11 @@ function create(koderData){
     return Koders.create(koderData)
 }
 
+function  findByIdAndDelete (deleteKoder){
+    return Koders.findByIdAndDelete(deleteKoder)
+}
 module.exports = {
 getAll,
-create
+create,
+findByIdAndDelete
 }
