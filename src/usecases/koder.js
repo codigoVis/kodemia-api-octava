@@ -15,8 +15,8 @@ function create(koderData){
 function  findByIdAndDelete (deleteKoder){
     return Koders.findByIdAndDelete(deleteKoder)
 }
-function  findByIdAndUpdate(updateKoder){
-   return Koders.findByIdAndUpdate(updateKoder)
+function  findByIdAndUpdate(koderId,updateKoder){
+   return Koders.findByIdAndUpdate(koderId,updateKoder)
 }
 module.exports = {
 getAll,
