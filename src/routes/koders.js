@@ -67,4 +67,28 @@ router.delete('/:id',async(request, response) => {
     }
 })
 
+router.patch('/:id', async( request, response) => {
+    try{
+        const idKoder = request.params.id
+        const koderUpdate = request.body
+
+        const updateKoder = await koders.findByIdAndUpdate(idKoder, koderUpdate)
+
+        response.json({
+            success: true,
+            data: {
+                updateKoder
+            }
+        })
+
+    }catch(erroe){
+        response.status(400)
+        response.json({
+            success: false,
+            error: error.message
+        })
+
+    }
+})
+
 module.exports = router
