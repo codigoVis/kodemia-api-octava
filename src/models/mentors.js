@@ -1,7 +1,6 @@
-
 const mongoose = require('mongoose')
 
-const koderSchema= new mongoose.Schema({
+const mentorsSchema= new mongoose.Schema({
     name:{
         type: String,
         required: true,
@@ -14,10 +13,18 @@ const koderSchema= new mongoose.Schema({
         max: 100,
         required: true
     },
+    gender: {
+        type: String,
+        enum:[
+            'male',
+            'female',
+            'nonbinary'
+        ]
+    },
     course: {
         type: String,
         required: true
     }
 })
 
-module.exports = mongoose.model('koders', koderSchema)
+module.exports = mongoose.model('mentors', mentorsSchema)
