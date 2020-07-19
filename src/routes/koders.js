@@ -7,7 +7,19 @@ const koders = require('../usecases/koder')
 // router conjunto y subconjunto de rutas 
 //funcion basicamente como lo hace app
 
-router.get('/', async (request,response) => {
+router.use((request, response, next) => {
+    console.log('middleware a nivel de router',request.vicente),
+    next()
+},(request,response, next) => {
+ console.log('middleware router koders 2')
+    next()
+})
+
+router.get('/',(request, response,  next) => {
+    console.log('middleware de endpoint Get koders')
+    next()
+},
+ async (request,response) => {
 try{
     const allKoders = await koders.getAll()
 
