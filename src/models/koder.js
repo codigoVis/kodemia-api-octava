@@ -17,7 +17,19 @@ const koderSchema= new mongoose.Schema({
     course: {
         type: String,
         required: true
+    },
+    email:{
+        type: String,
+        required:true,
+        match:/^.+@.+\..+$/
+    },
+    password:{
+        type: String,
+        required: true,
+        min:1
     }
+
+
 })
 
 module.exports = mongoose.model('koders', koderSchema)
