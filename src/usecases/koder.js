@@ -22,9 +22,15 @@ function  findByIdAndUpdate(koderId,updateKoder){
    return Koders.findByIdAndUpdate(koderId,updateKoder)
 }
 async function signup (koderDataSignup){
-
-  const {password}=koderDataSignup
   
+  const {password,email}=koderDataSignup
+
+  const emailValid = await Koders.findOne({ email})
+  if(emailValid){
+ 
+    throw  new Error('Email exists')
+}
+
   // encriptar la contraseña
   const passwordEncripted = await bcrypt.hash (password)
 
@@ -35,7 +41,7 @@ async function signup (koderDataSignup){
 }
  async function login (email, passwordPlain ) {
    //buscar el usuario en la base de datos
-    const koderByEmail = await Koders.findOne({ email })
+    const koderByEmail = await Koders.findOne({ email})
     if(!koderByEmail){
     //se ejecuta cuando no hay un koder
       throw  new Error('Email not found')
@@ -46,7 +52,12 @@ async function signup (koderDataSignup){
   throw new Error('Password not valid')
 
 // Todo: create token 
-  return jwt.sign({id: koderByEmail._id})
+  return jwt.sign({
+    id: koderByEmail._id ,
+    email:koderByEmail.email,
+     name:koderByEmail.name,
+     password:koderByEmail.password
+    })
 }
 
 module.exports = {
@@ -55,5 +66,5 @@ create,
 findByIdAndDelete,
 findByIdAndUpdate,
 signup,
-login
+login,
 }
