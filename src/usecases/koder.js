@@ -52,12 +52,7 @@ async function signup (koderDataSignup){
   throw new Error('Password not valid')
 
 // Todo: create token 
-  return jwt.sign({
-    id: koderByEmail._id ,
-    email:koderByEmail.email,
-     name:koderByEmail.name,
-     password:koderByEmail.password
-    })
+  return jwt.sign({id: koderByEmail._id})
 }
 
 module.exports = {
