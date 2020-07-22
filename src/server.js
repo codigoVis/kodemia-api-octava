@@ -2,12 +2,15 @@
 
 //este archivo es la definicion del servidor 
 const express = require('express')
+const cors =require('cors')
 
 const app = express()
 
 const kodersRouter =require('./routes/koders')
 const mentorsRouter = require('./routes/mentors')
 const authRouter = require('./routes/auth')
+
+app.use(cors())
 app.use(express.json())
 
 //middleware a nivel de aplicacion
@@ -25,6 +28,7 @@ app.use((request, response ,next)=>{
     console.log('middlewar 3: ',request.vicente)
     next()
 })
+
 
 
 //montando el router de koders
