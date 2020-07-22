@@ -9,6 +9,7 @@ const app = express()
 const kodersRouter =require('./routes/koders')
 const mentorsRouter = require('./routes/mentors')
 const authRouter = require('./routes/auth')
+const lessonsRouter = require('./routes/lessons')
 const methods = require('./middlewares/method')
 
 app.use(cors())
@@ -36,6 +37,7 @@ app.use((request, response ,next)=>{
 app.use('/koders', kodersRouter)
 app.use('/mentors', mentorsRouter)
 app.use('/auth',authRouter)
+app.use('/lessons',lessonsRouter)
 app.get('/',(request,response) => {
     response.json({
         success: true,
