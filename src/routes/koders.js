@@ -5,7 +5,7 @@ const router = express.Router()
 
 const koders = require('../usecases/koder')
 const auth = require ('../middlewares/auth')
-const methods =require('../middlewares/method')
+
 
 // router conjunto y subconjunto de rutas 
 //funcion basicamente como lo hace app
@@ -18,7 +18,7 @@ router.use((request, response, next) => {
     next()
 })
 
-router.get('/',methods,(request, response,  next) => {
+router.get('/',async(request, response,  next) => {
     console.log('middleware de endpoint Get koders')
     next()
 },
@@ -40,7 +40,7 @@ try{
     })
 }
 })
-router.post('/',methods,auth, async (request,response) => {
+router.post('/',auth, async (request,response) => {
     try{
         console.log('koder ', request.koder)
         

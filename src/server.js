@@ -9,10 +9,11 @@ const app = express()
 const kodersRouter =require('./routes/koders')
 const mentorsRouter = require('./routes/mentors')
 const authRouter = require('./routes/auth')
+const methods = require('./middlewares/method')
 
 app.use(cors())
 app.use(express.json())
-
+app.use(methods)
 //middleware a nivel de aplicacion
 // app.use(function(requst, response, next))
 //app.use(...function) recibe una o mas funciones
