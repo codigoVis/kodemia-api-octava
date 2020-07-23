@@ -24,12 +24,12 @@ router.get('/', async (req, res) => {
 })
 router.post('/',async (req,res) => {
     try {
-       
-        const newLessons = await lessons.create(req.body)
+        const newLessonData = req.body
+        const newLessons = await lessons.create(newLessonData)
             res.json({
                 success: true,
                 data: {
-                    lesson: newLessons
+                    newLessons
                 }
             })
     } catch (error) {
@@ -60,6 +60,25 @@ router.patch('/:id', async (req, res) => {
                 error: error.message
             })
       }
+
+})
+router.delete('/:id', async (req, res) => {
+    try {
+        const idDelete =req.params.id
+        const idDeleteLessons = await lessons. findByIdAndDelete(idDelete)
+          res.json({
+              success: true,
+              data: {
+                  idDeleteLessons
+              }
+          })
+    } catch (error) {
+        res.status(400)
+        res.json({
+            success: false,
+            error: error.message
+        })
+    }
 
 })
 

@@ -8,11 +8,15 @@ function getAll(){
 function create(newLessons){
     return Lessons.create(newLessons)
 }
-function findByIdAndUpDate(lessonsId, upDateLesson){
+function findByIdAndUpdate(lessonsId, upDateLesson){
     return Lessons.findByIdAndUpdate(lessonsId, upDateLesson)
+}
+function  findByIdAndDelete(idDeleteData){
+    return Lessons. findByIdAndDelete(idDeleteData)
 }
 module.exports={
     getAll,
     create,
-    findByIdAndUpDate
+    findByIdAndUpdate,
+    findByIdAndDelete
 }
